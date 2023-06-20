@@ -1,5 +1,5 @@
 1. Enterprise
-2. A boilerplate codes are those that are repetitive or paulit-ulit, for example, setter/getter codes; Spring framework reduces these.
+2. Boilerplate codes are those that are repetitive or paulit-ulit, for example, setter/getter codes; Spring framework reduces these.
 3. Spring
 4. Pivotal
 5. start.spring.io

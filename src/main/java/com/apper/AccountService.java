@@ -15,11 +15,11 @@ public class AccountService {
     public Account create(String firstName, String lastName, String username, String clearPassword) {
         Account account = new Account();
 
-        String id = UUID.randomUUID().toString();
-        System.out.println("Generated id: " + id);
+        IdGeneratorService IdGenServ = new IdGeneratorService();
+        account.setId(IdGenServ.getNextId());
+        //like what sir said, segregation of concern, dapat di concerned si AccountService with creating the id and its format
 
-        account.setId(id);
-        account.setBalance(1_000.0);
+        account.setBalance(1_000.0); //you can use underscore to separate big numbers, parang comma
 
         LocalDateTime now = LocalDateTime.now();
         account.setCreationDate(now);
@@ -29,7 +29,7 @@ public class AccountService {
         account.setLastName(lastName);
         account.setUsername(username);
         account.setClearPassword(clearPassword);
-        account.setVerificationCode("QW345T");
+        account.setVerificationCode(IdGenServ.generateRandomCharacters(6));
 
         accounts.add(account);
 

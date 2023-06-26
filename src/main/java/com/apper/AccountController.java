@@ -21,6 +21,7 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request) throws UsernameAlreadyRegistered {
         List<Account> accounts = accountService.getAll();
+
         for (Account account: accounts) {
             if (account.getUsername().equals(request.getEmail())) {
                 throw new UsernameAlreadyRegistered();
@@ -38,7 +39,7 @@ public class AccountController {
     public GetAccountResponse getAccount(@PathVariable String accountId) {
         List<Account> accounts = accountService.getAll();
         for (Account account: accounts) {
-            if (accounts.contains(accountService.get(accountId))) {
+            if (account.getId().equals(accountId)) {
                 return createGetAccountResponse(account);
             }
         }
@@ -71,15 +72,26 @@ public class AccountController {
     @PutMapping("{accountId}")
     public UpdateAccountResponse updateAccount(@RequestBody CreateAccountRequest request, @PathVariable String accountId) {
         //reusing CreateAccountRequest
-        Account account = accountService.get(accountId);
-        account.setFirstName(request.getFirstName());
-        account.setLastName(request.getLastName());
-        account.setUsername(request.getEmail());
-        account.setClearPassword(request.getPassword());
+        List<Account> accounts = accountService.getAll();
+        for (Account account: accounts) { //iterating over each account in the accounts list
+            if (account.getId().equals(accountId)) {
+                //checks the id of each account entry if it's equals to the accountId given
+                for (Account account1: accounts) {
+                    if (account1.getUsername().equals(request.getEmail())) {
+                        throw new UsernameAlreadyRegistered();
+                    }
+                }
+                account.setFirstName(request.getFirstName());
+                account.setLastName(request.getLastName());
+                account.setUsername(request.getEmail());
+                account.setClearPassword(request.getPassword());
 
-        UpdateAccountResponse response = new UpdateAccountResponse();
-        response.setLastUpdated(account.getLastUpdated());
-        return response;
+                UpdateAccountResponse response = new UpdateAccountResponse();
+                response.setLastUpdated(account.getLastUpdated());
+                return response;
+            }
+        }
+        throw new AccountNotFound();
     }
 
     @DeleteMapping("{accountId}")
@@ -93,6 +105,7 @@ public class AccountController {
                 break;
             }
         }
+        throw new AccountNotFound();
     }
 
 //    @PatchMapping("{accountId}")

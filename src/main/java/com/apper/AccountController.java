@@ -36,9 +36,13 @@ public class AccountController {
 
     @GetMapping("{accountId}")
     public GetAccountResponse getAccount(@PathVariable String accountId) {
-        Account account = accountService.get(accountId);
-
-        return createGetAccountResponse(account);
+        List<Account> accounts = accountService.getAll();
+        for (Account account: accounts) {
+            if (accounts.contains(accountService.get(accountId))) {
+                return createGetAccountResponse(account);
+            }
+        }
+        throw new AccountNotFound();
     }
 
     @GetMapping

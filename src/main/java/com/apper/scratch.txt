@@ -1,0 +1,20 @@
+
+When logging in fb/google: They communicate, not duplicate; pano mag iinteract
+API: Application Programming Interface
+	-2 applications talking together
+ReST: Representational State Transfer
+	-usapin ng state: how can I represent that I'm getting/deleting a state etc
+ReST Components:
+1. HTTP Verbs: yung ginagawa
+	-Post: to create a resource
+	-Put: to update an existing resource
+	-Get: retrieve a resource
+	-Delete: delete a resource
+2. Resource path: asan ko ba makukuha, san ko madedelete, san ako pwede mag add ng resource
+3. Header: anong format ng body niya; there are different types, but we use application-json
+4. Body: json is a key-value pair, comma-separated, inside curly braces, etc
+5. Response: may response code (numbers e.g. 404) and a body (pero body is optional)
+	1xx: continuing
+	200, 200: OK, Created (basta successful)
+	400, 404, 405: bad request, not found, not allowed
+	500: internal server error

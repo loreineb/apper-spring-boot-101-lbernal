@@ -102,7 +102,12 @@ public class AccountController {
         for (Account account: accounts) {
             if (account.getId().equals(accountId)) {
                 accounts.remove(account);
-                break;
+                return;
+                /* used break at first here, which led to the exception always being thrown
+                break kasi it will exit the loop then continue executing the code outside the loop
+                pag return, it will exit the method na mismo
+                note: since void toh, okay yung return lang
+                */
             }
         }
         throw new AccountNotFound();

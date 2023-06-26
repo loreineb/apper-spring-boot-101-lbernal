@@ -84,4 +84,33 @@ public class AccountController {
             }
         }
     }
+
+//    @PatchMapping("{accountId}")
+//    public UpdateAccountResponse updateAccountPartial(@RequestBody CreateAccountRequest request, @PathVariable String accountId) {
+//        //reusing CreateAccountRequest
+//        Account account = accountService.get(accountId);
+//        if (request.getFirstName() != null) {
+//            account.setFirstName(request.getFirstName());
+//        }
+//        if (request.getLastName() != null) {
+//            account.setLastName(request.getLastName());
+//        }
+//        if (request.getEmail() != null) {
+//            account.setUsername(request.getEmail());
+//        }
+//        if (request.getPassword() != null) {
+//            account.setFirstName(request.getPassword());
+//        }
+//
+//        UpdateAccountResponse response = new UpdateAccountResponse();
+//        response.setLastUpdated(account.getLastUpdated());
+//        return response;
+//    }
+    /* Patch: it accepts kahit one input lang
+        - keyword: partial
+        so kunyari name lang mapapalitan if yun lang asa body,
+        BUT dun sa code ng Put, if name lang nilagay mo sa body, the other values will become null kasi dapat LAHAT palitan
+        */
+
+
 }

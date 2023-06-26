@@ -19,7 +19,13 @@ public class AccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request) {
+    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request) throws UsernameAlreadyRegistered {
+        List<Account> accounts = accountService.getAll();
+        for (Account account: accounts) {
+            if (account.getUsername().equals(request.getEmail())) {
+                throw new UsernameAlreadyRegistered();
+            }
+        }
         Account account= accountService.create(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());
 
         CreateAccountResponse response = new CreateAccountResponse();

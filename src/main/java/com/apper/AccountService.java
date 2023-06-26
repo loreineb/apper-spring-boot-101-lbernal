@@ -14,8 +14,10 @@ public class AccountService {
 
     public Account create(String firstName, String lastName, String username, String clearPassword) {
         Account account = new Account();
+
         String id = UUID.randomUUID().toString();
         System.out.println("Generated id: " + id);
+
         account.setId(id);
         account.setBalance(1_000.0);
 
@@ -42,6 +44,10 @@ public class AccountService {
         }
 
         return null;
+    }
+
+    public List<Account> getAll() {
+        return accounts;
     }
 //
 //    public void update() {

@@ -12,4 +12,6 @@ public class GetAccountResponse {
 
     private String username;
     private LocalDateTime registrationDate;
+
+    private String accountId;
 }

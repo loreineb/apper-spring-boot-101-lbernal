@@ -18,3 +18,9 @@ ReST Components:
 	200, 200: OK, Created (basta successful)
 	400, 404, 405: bad request, not found, not allowed
 	500: internal server error
+
+To test with exceptions:
+1. POST: if u enter an existing username/email, dapat mag 400
+2. GET: if u get a non-existing id, dapat mag 404
+3. PUT: if u try to change to an existing username/email, will give 400; if you try to change a non-existing id, 404
+4. DELETE: if u try to delete a non-existing id, 404; NOTE: different from the 204 you get after a successful deletion

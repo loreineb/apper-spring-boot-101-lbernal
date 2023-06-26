@@ -72,4 +72,16 @@ public class AccountController {
         return response;
     }
 
+    @DeleteMapping("{accountId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT) //don't forget to put this to give the proper response
+    public void deleteAccount(@PathVariable String accountId) {
+        List<Account> accounts = accountService.getAll();
+
+        for (Account account: accounts) {
+            if (account.getId().equals(accountId)) {
+                accounts.remove(account);
+                break;
+            }
+        }
+    }
 }

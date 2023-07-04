@@ -1,0 +1,14 @@
+    @JsonProperty("first_name") //kaya nagnunull at first kasi may discrepancy between first_name and firstName
+    @NotBlank //a mix of not empty and not null: must not be null and must contain at least one non-space character
+    private String firstName;
+
+    don't forget to put @Valid sa @RequestBody
+
+    @Pattern -> mas generic/agnostic
+
+    springboot collects all errors in the fields
+
+    things I can add:
+    1. sa password, yung at least one special, one capital etc
+    2. sa date, make sure na like actual date, kasi if ever, papasa yung 2200 ganun eh wala pa naman yung year na yun
+    3.

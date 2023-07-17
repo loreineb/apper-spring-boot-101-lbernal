@@ -1,0 +1,24 @@
+Basic mistakes I made (that cost me a lot of time):
+
+1. Did not use @JsonProperty so may discrepancy between the Postman body and IntelliJ name
+2. Did not double check if the path variable name I put matched the one sa code body
+3. Forgot to put @Data of Lombok so my setters and getters were producing errors
+4. in mapping, "id" is NOT the same with "{id}"
+5. for the exceptions, double check mo if tama ba yung chinecheck mo for exceptions
+6. put ResponseStatus NoContent kaya wala tuloy lumalabas
+
+New things I learned for future reference:
+1. Because the repository extends CrudRepository, naiinherit yung mga built-in na methods like FindAll, etc
+2. Iterable: from the name itself, it's for iterating!
+    yung nasa loob ng <> is the type of things na iiterate, kunyari String or Integer
+3. 'optional' is to avoid NullPointerExceptions; checks if present or absent yung thing
+    -> will return NoSuchElement
+4. @RestController: when you put this, it means na maghahandle ng API requests yung code na toh
+5. You put @Valid para vavalidate niya yung mga constraints na you put via annotation like @Email, @NotNull
+6. You can have more than just {id} sa annotation, kahit path1/path2/{id}
+7. Si findAllByBloggerId in BlogRepository is a method na matic na gets na ni Spring based on the naming
+8. boolean isEmpty = !bloggers.iterator().hasNext();
+    -> iterator() goes through bloggers, and hasNext checks if well, may katabi! so it means na if walang katabi, walang laman
+    -> you need the '!' kasi if walang laman, hasNext will return false, eh you want it s.t. isEmpty is true diba for the next if statement
+9. by default, boolean is false
+10. in the delete mapping, you can't just remove from the list, kailangan tagos hanggang repo
